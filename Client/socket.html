@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>VERG.IO</title>
+</head>
+
+<body>
+    <canvas id="gameCanvas" style="width: 1000; height: 1000;">
+    </canvas>
+    <script src="/socket.io/socket.io.js"></script>
+
+
+    <script>
+        const socket = io(); // it will connect to the server
+        //you will write your code
+        //control+ C will pause or stop in the termin the server
+        const canvas = document.getElementById("gameCanvas"); // accessing canvas
+        const context = canvas.getContext("2d"); // accessing canvas as a 2D board
+
+        document.addEventListener("keydown", (event) ->){ //listen to keyboard buttons
+
+            //javascript event keycodes
+            if (event.key === "ArrowUp") socket.emit("move", { dx: 0, dy: -1 }): //if a key pressed then send data to the server through "move" line
+
+            if (event.key === "ArrowDown") socket.emit("move", { dx: 0, dy: 1 }): //if a key pressed then send data to the server through "move" line
+
+            if (event.key === "ArrowLeft") socket.emit("move", { dx: -1, dy: 0 }): //if a key pressed then send data to the server through "move" line
+
+            if (event.key === "ArrowRight") socket.emit("move", { dx: 1, dy: 0 }): //if a key pressed then send data to the server through "move" line
+        });
+
+        //the momment the client receives data over the sate line of the socket.io
+        socket.io("state", (players) -> {
+            context.clearRect(0, 0, canvas.height); //we clear the screen in a rectangle as big as our canvas
+            for(let id in players) { //loop through the list of players one by one
+                const player = players[id];
+                context.fillRect(player.x, player.y, 10, 10); //draw that player as a small rectangle width and height of 10
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
