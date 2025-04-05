@@ -38,7 +38,7 @@ io.on("connection", (socket) => {
 });
 
 //Our tick function
-let framerate = 30;
+let framerate = 60;
 setInteraval(function () {
     io.emit("state", "players"); // send the list of the players and all their info to everyone
 
