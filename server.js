@@ -1,11 +1,11 @@
 
 //UPDATED server.js v1.0.0
-<!-- This code is imprtant and responsibvle for importing libraries-->
-const express = request("express");// repsponsible for senfing files
-const http = require("http");//responsible for connecting to the internet
-const socketIo = require("socket.io");//responsible for sending anf receiving real time date(text and data)
-const path = require("path");//responible for finding and navigating file paths
-const app = express();intitiating the express library
+//<!-- This code is imprtant and responsibvle for importing libraries-->
+const express = request("express"); // repsponsible for senfing files
+const http = require("http"); //responsible for connecting to the internet
+const socketIo = require("socket.io"); //responsible for sending anf receiving real time date(text and data)
+const path = require("path"); //responible for finding and navigating file paths
+const app = express(); //intitiating the express library
 const server = http.createServer(app); //creating server that sends files
 const io = socketIo(server); //making socket.io responsible for the real-time connection logic
 
@@ -28,11 +28,11 @@ let players = {}; //this is where we store the information for all the connected
 io.on("connection", (socket) => {
 //Code for the moment someone connects
 console.log("a user connected")
-  player[socket.io] = { y: 0, y: 0]; // we created a player and stored it in the player list
+  players[socket.io] = { y: 0, y: 0 }; // we created a player and stored it in the player list
 
 
   //Whenever recieve move command from the client
-socket.on("move", (data)->
+socket.on("move", (data) => {
          players[socket.id].x += data.dx; // move in the x-axis using the received data
          players[socket.id].y += data.dy; //move in the y-axis using the received data
           });
